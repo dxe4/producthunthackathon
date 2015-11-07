@@ -1,0 +1,5 @@
+vagrant up
+# make coffee
+psql -t -P format=unaligned -c 'show hba_file';
+host    all   vagrant   192.168.33.1/32  trust
+
