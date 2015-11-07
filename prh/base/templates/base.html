@@ -1,0 +1,25 @@
+{% load staticfiles %}
+
+<html>
+
+    <head>
+        {% include "js_vars.html" %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js
+        }
+" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.0/mustache.js" type="text/javascript"></script>
+        <script src="{% static 'lib/bootstrap.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'lib/browser-request.js' %}" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.2/react.min.js" type="text/javascript"></script>
+
+        <link rel="stylesheet" href="{% static 'lib/bootstrap.css' %}">
+        {% block head %}
+        {% endblock %}
+    </head>
+
+    <body>
+        {% block body %}
+        {% endblock body %}
+    </body>
+
+</html>
