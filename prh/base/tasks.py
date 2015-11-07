@@ -14,25 +14,27 @@ def fetch_past_events(user_id):
     meetup = Meetup(user_info=user_info)
     last_event = None
 
-    for i in range(0, 10):
+    for i in range(0, 1):
         events = []
-        params = {}
+        params = {'page': 20}
         headers = {}
 
         if last_event:
             pass
 
-        result = meetup.my_events(user_info.refresh_token)
-        for k, v in result.items():
-            if result.get("status") != 'past':
+        result = meetup.my_events(
+            user_info.access_token, headers=headers, params=params
+        )
+        for item in result:
+            if item.get("status") != 'past':
                 continue
             else:
                 data = {
-                    'urlname': result.get('group', {}).get("urlname"),
-                    'time': timestamp_to_datetime(result.get("time")),
+                    'urlname': item.get('group', {}).get("urlname"),
+                    'time': timestamp_to_datetime(item.get("time") / 1000),
                     'user': user,
                 }
-                data.update({key: result.get(key) for key in event_attrs})
+                data.update({key: item.get(key) for key in event_attrs})
                 new_event = AttendedEvent(**data)
                 events.append(new_event)
 

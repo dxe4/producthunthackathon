@@ -1,3 +1,4 @@
+import time
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -47,7 +48,7 @@ class SignUpForm(forms.Form):
                 user_info_data.get('joined')
             ),
             'expires_in': timestamp_to_datetime(
-                user_auth_data.get('expires_in')
+                time.time() + user_auth_data.get('expires_in')
             ),
             'access_token': user_auth_data.get("access_token"),
             'token_type': user_auth_data.get("token_type"),

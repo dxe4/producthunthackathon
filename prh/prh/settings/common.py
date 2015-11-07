@@ -113,7 +113,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-LOG_LEVEL = os.getenv("LOG_LEVEl", "DEBUG")
+LOG_LEVEL = os.getenv("LOG_LEVEl", "INFO")
 
 LOGGING = {
     'version': 1,
