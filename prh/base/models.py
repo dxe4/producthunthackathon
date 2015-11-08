@@ -22,6 +22,7 @@ class UserInfo(models.Model):
 class AttendedEvent(models.Model):
     user = models.ForeignKey(User)
     link = models.CharField(max_length=150, null=True, blank=True)
+    meetup_id = models.CharField(max_length=20, null=True, blank=True)
     name = models.CharField(max_length=150, null=True, blank=True)
     yes_rsvp_count = models.IntegerField(default=0)
     urlname = models.CharField(max_length=150, null=True, blank=True)

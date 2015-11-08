@@ -14,7 +14,7 @@ def timestamp_to_datetime(ts, safe=True):
     if safe and not ts:
         # unpythonic?
         return None
-    print(ts)
+
     return datetime.datetime.fromtimestamp(int(ts))
 
 
@@ -52,8 +52,8 @@ class Meetup(object):
         user_info.save()
 
     def _is_expired(self, expires_in):
-        dt = utc_now() - expires_in
-        if dt.seconds < 15:
+        dt = expires_in - utc_now()
+        if dt.total_seconds() < 15:
             return True
         else:
             return False
@@ -118,14 +118,16 @@ class Meetup(object):
         return result.json()
 
     def my_events(self, access_token, params, headers):
+        '''
+        return: response (to read ratelimits and Link headers)
+        '''
         headers.update(
             self._auth_headers(access_token)
         )
 
-        result = requests.get(
+        return requests.get(
             self.my_events_url, params=params, headers=headers
         )
-        return result.json()
 
 
 def meetup_signup(code):
